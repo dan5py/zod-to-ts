@@ -1,5 +1,7 @@
 # zod-to-ts
 
+Fork of [zod-to-ts](https://github.com/sachinraja/zod-to-ts)
+
 generate TypeScript types from your [Zod](https://github.com/colinhacks/zod) schema
 
 ## Installation
