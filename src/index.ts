@@ -139,7 +139,7 @@ const zodToTsNode = (
 
 				const { typeName: nextZodNodeTypeName } = nextZodNode._def
 				const isOptional = nextZodNodeTypeName === 'ZodOptional'
-					|| nextZodNode.isOptional() && nextZodNodeTypeName !== 'ZodCatch'
+					|| (nextZodNode.isOptional() && nextZodNodeTypeName !== 'ZodCatch')
 
 				const propertySignature = f.createPropertySignature(
 					undefined,
@@ -148,21 +148,20 @@ const zodToTsNode = (
 					type,
 				)
 
-				let descriptionParts: string[] = [];
+				let descriptionParts: string[] = []
 
 				if (nextZodNode.description) {
-					descriptionParts.push(nextZodNode.description);
+					descriptionParts.push(nextZodNode.description)
 				}
 
 				if (nextZodNode instanceof ZodDefault) {
-					const data = nextZodNode._def.defaultValue();
-					const stringifiedData = JSON.stringify(data);
-					descriptionParts.push(`@default ${stringifiedData}`);
+					const data = nextZodNode._def.defaultValue()
+					const stringifiedData = JSON.stringify(data)
+					descriptionParts.push(`@default ${stringifiedData}`)
 				}
 
-
 				if (descriptionParts.length > 0) {
-					const suffix = descriptionParts.length > 1 ? '\n' : '';
+					const suffix = descriptionParts.length > 1 ? '\n' : ''
 					addJsDocComment(propertySignature, descriptionParts.join('\n * ') + suffix)
 				}
 
